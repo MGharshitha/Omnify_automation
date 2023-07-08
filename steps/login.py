@@ -1,3 +1,4 @@
+
 from behave import *
 import time
 from selenium import webdriver
@@ -13,25 +14,26 @@ def step_impl(context):
 
 @given('I am at the Account/Login page')
 def step_impl(context):
-    context.browser.get('https://dev.eventzalley.com')
+    context.browser.get('https://www.eventzalley.com')
     print("1")
     button = context.browser.find_element(By.XPATH, "//span[text()='Log In | Sign Up']")
     button.click()
     print("2")
+    context.browser.maximize_window()
     pass
 
 
-@when('I fill the account email textbox with value \'myname@mymail.com\'{email}')
+@when('I fill the account email textbox with value \'myname@mymail.com\'')
 def step_impl(context):
     email = context.browser.find_element(By.ID, "email")
-    email.send_keys("admin@123")
+    email.send_keys("harshithamgb@gmail.com")
     print("3")
 
 
-@when('I fill the password textbox with value \'mypassword\' "{password}"')
+@when('I fill the password textbox with value \'mypassword\'')
 def step_impl(context):
     password = context.browser.find_element(By.ID, "password")
-    password.send_keys("A@123asd")
+    password.send_keys("User@123")
     print("4")
 
 
@@ -47,7 +49,9 @@ def step_impl(context):
 @then('I should be at the home page')
 def step_impl(context):
     assert True
-    profile = context.browser.find_element(By.XPATH, "//*[@id='root']/div/header/div/div[2]/img")
+    # profile = context.browser.find_element(By.XPATH, "//*[@id='mainContent']/header/div/div[2]/div/svg")
+    profile = context.browser.find_element(By.XPATH, "//div[@class = 'MuiBox-root jss44']")
+
     profile.click()
     print(6)
     time.sleep(10)
@@ -56,9 +60,9 @@ def step_impl(context):
 
 @Then('Then click on the logout button')
 def step_impl(context):
-    logout = context.browser.find_element(By.XPATH, "li[role= 'menuitem']")
+    logout = context.browser.find_element(By.XPATH, "//li[@role= 'menuitem']")
     logout.click()
     time.sleep(10)
 
-
     context.browser.close()
+
